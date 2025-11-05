@@ -6,6 +6,7 @@ function exitGame() {
   } else {
     window.close();
   }
+  console.log("Game Exited");
 }
 class StartScene extends Phaser.Scene {
   constructor() {
@@ -13,7 +14,6 @@ class StartScene extends Phaser.Scene {
   }
 
   create() {
-    console.log("start");
     // Background
     this.speed = 1;
     this.duration = 60;
@@ -27,7 +27,7 @@ class StartScene extends Phaser.Scene {
     // this.pauseMenu();
     //
     this.crossBtn = this.add
-      .image(50, 50, "ic_cross")
+      .image(50, 70, "ic_cross")
       .setOrigin(0.5)
       .setDepth(10)
       .setScale(0.3)
@@ -100,7 +100,6 @@ class StartScene extends Phaser.Scene {
         ease: "Power1",
         yoyo: true,
         onComplete: () => {
-          console.log("1");
           this.scene.start("GameScene");
         },
       });

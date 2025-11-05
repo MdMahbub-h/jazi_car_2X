@@ -1,5 +1,6 @@
 function showTotalScore(score) {
-  console.log(score);
+  console.log("Game Completed");
+  console.log("Total Score: " + score);
 }
 class EndScene extends Phaser.Scene {
   constructor() {
@@ -13,7 +14,6 @@ class EndScene extends Phaser.Scene {
   }
 
   create() {
-    showTotalScore(this.score);
     // Background
     this.paused = true;
     this.endMenuItems = [];
@@ -67,6 +67,7 @@ class EndScene extends Phaser.Scene {
               item.destroy();
             }
           });
+          showTotalScore(this.score);
           this.endMenuItems = [];
           this.scene.start("StartScene");
         },

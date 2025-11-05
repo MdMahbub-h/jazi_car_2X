@@ -1,8 +1,5 @@
 function exitedDetermination() {
-  console.log("exited");
-}
-function gameCompleted() {
-  console.log("game Completed");
+  console.log("Exited");
 }
 
 class GameScene extends Phaser.Scene {
@@ -10,14 +7,13 @@ class GameScene extends Phaser.Scene {
     super({ key: "GameScene" });
   }
   create() {
-    console.log("game");
     this.initialRoadSpeed = 300;
     this.speedIncrease = 1; //1,0,-1
     this.speedIncreaseRate = 0.3; //in every 10 second
     this.obstacleSpawnRate = 2;
     this.coinSpawnRate = 2.5;
     this.jaziItemSpawnRate = 0.4;
-    this.gameDuration = 60;
+    this.gameDuration = 6;
     this.coinPoints = 5;
     this.jaziItemPoints = 25;
     this.obstaclePointsPenalty = -5;
@@ -51,7 +47,7 @@ class GameScene extends Phaser.Scene {
       .tileSprite(300, 650, 600 * this.scaleBg, 1300 * this.scaleBg, "bg")
       .setScale(1 / this.scaleBg);
     this.crossBtn = this.add
-      .image(50, 50, "ic_cross")
+      .image(50, 70, "ic_cross")
       .setOrigin(0.5)
       .setDepth(10)
       .setScale(0.3)
@@ -412,12 +408,12 @@ class GameScene extends Phaser.Scene {
     let addScore = add;
     if (add == this.coinPoints) {
       addScore = this.coinMultiply;
-      this.coinMultiply = this.coinMultiply * 2;
+      this.coinMultiply = this.coinMultiply + this.coinPoints;
       this.carMultiply = this.obstaclePointsPenalty;
     } else if (add == this.obstaclePointsPenalty) {
       this.coinMultiply = this.coinPoints;
       addScore = this.carMultiply;
-      this.carMultiply = this.carMultiply * 2;
+      this.carMultiply = this.carMultiply + this.obstaclePointsPenalty;
     }
     this.score += addScore;
     if (this.score < 0) {
@@ -593,7 +589,6 @@ class GameScene extends Phaser.Scene {
       callback: () => {
         obstacle.disableBody(true, true);
         // this.killAllTimeEvents();
-        gameCompleted();
         this.scene.start("EndScene", {
           won: false,
           score: this.score,

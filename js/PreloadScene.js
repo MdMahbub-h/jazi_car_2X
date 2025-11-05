@@ -28,21 +28,9 @@ class PreloadScene extends Phaser.Scene {
     this.load.image("timer", "assets/car/timer.png");
     this.load.image("score", "assets/car/score.png");
 
-    // Load UI assets
-    this.load.image("close", "assets/UI/close.png");
-    this.load.image("home-icon", "assets/UI/home-icon.png");
-    this.load.image("info-icon", "assets/UI/info-icon.png");
-    this.load.image("soundoff-button", "assets/UI/soundoff-button.png");
-    this.load.image("soundon-button", "assets/UI/soundon-button.png");
-
-    // Load fonts (if needed, but Phaser uses system fonts or bitmap fonts)
-    // this.load.bitmapFont("font", "assets/fonts/font.png", "assets/fonts/font.xml");
-
     // Load sounds
     this.load.audio("bgaudio", "assets/sounds/bgaudio.mp3");
     this.load.audio("congrats", "assets/sounds/congrats.mp3");
-    this.load.audio("lose-sound", "assets/sounds/lose-sound.mp3");
-    this.load.audio("spinning", "assets/sounds/spinning.mp3");
 
     // Loading bar or progress
     const progressBar = this.add.graphics();
