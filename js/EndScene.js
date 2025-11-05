@@ -32,7 +32,8 @@ class EndScene extends Phaser.Scene {
         padding: { left: 10, right: 10, top: 5, bottom: 5 },
       })
       .setOrigin(0.5)
-      .setDepth(11);
+      .setDepth(11)
+      .setInteractive({ useHandCursor: true });
     if (this.score > 99999) {
       this.scoreText.setFontSize(30);
     }
@@ -58,6 +59,26 @@ class EndScene extends Phaser.Scene {
       this.tweens.add({
         targets: this.crossBtnP,
         scale: 0.25,
+        duration: 100,
+        ease: "Power1",
+        yoyo: true,
+        onComplete: () => {
+          this.endMenuItems.forEach((item) => {
+            if (item) {
+              item.destroy();
+            }
+          });
+
+          onGameCompleted(this.score);
+          this.endMenuItems = [];
+          this.scene.start("StartScene");
+        },
+      });
+    });
+    this.scoreText.on("pointerdown", () => {
+      this.tweens.add({
+        targets: this.scoreText,
+        scale: 0.8,
         duration: 100,
         ease: "Power1",
         yoyo: true,
