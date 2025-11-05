@@ -5,7 +5,7 @@ function onGameExited() {
 function onOffline() {
   const offlineTime = new Date().toISOString();
   localStorage.setItem("offlineTime", offlineTime);
-  console.log("Game Exited");
+  console.log("Game offline");
 }
 
 class GameScene extends Phaser.Scene {
@@ -686,3 +686,4 @@ class GameScene extends Phaser.Scene {
 }
 
 export default GameScene;
+
