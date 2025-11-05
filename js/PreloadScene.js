@@ -17,6 +17,7 @@ class PreloadScene extends Phaser.Scene {
     this.load.image("btn_yes", "assets/car/btn_yes.png");
     this.load.image("startBtn", "assets/car/startBtn.png");
     this.load.image("ic_close_dialog", "assets/car/ic_close_dialog.png");
+    this.load.image("common_dialog", "assets/car/common_dialog.png");
     this.load.image("ic_cross", "assets/car/ic_cross.png");
     this.load.image("ic_dialog", "assets/car/ic_dialog.png");
     this.load.image("ic_gift_box", "assets/car/ic_gift_box.png");
@@ -28,7 +29,6 @@ class PreloadScene extends Phaser.Scene {
     this.load.image("timer", "assets/car/timer.png");
     this.load.image("score", "assets/car/score.png");
 
-    // Load sounds
     this.load.audio("bgaudio", "assets/sounds/bgaudio.mp3");
     this.load.audio("congrats", "assets/sounds/congrats.mp3");
 

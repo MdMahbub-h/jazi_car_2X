@@ -1,4 +1,4 @@
-function exitGame() {
+function onGameExited() {
   if (navigator.app) {
     navigator.app.exitApp(); // Android
   } else if (navigator.device) {
@@ -6,8 +6,30 @@ function exitGame() {
   } else {
     window.close();
   }
+
   console.log("Game Exited");
 }
+
+function checkOfflineLimit() {
+  const offlineTimeStr = localStorage.getItem("offlineTime");
+
+  console.log("offline");
+
+  const offlineTime = new Date(offlineTimeStr);
+  const now = new Date();
+
+  const diffMs = now - offlineTime; // difference in milliseconds
+  const diffDays = diffMs / (1000 * 60 * 60 * 24); // convert to days
+  if (diffDays <= 1) {
+    alert("⛔ You cannot open the game yet. Please wait until 1 day passes.");
+    return false; // block game start
+  } else {
+    // More than 1 day passed → allow game and clear offline record
+    localStorage.removeItem("offlineTime");
+    return true;
+  }
+}
+
 class StartScene extends Phaser.Scene {
   constructor() {
     super({ key: "StartScene" });
@@ -100,7 +122,10 @@ class StartScene extends Phaser.Scene {
         ease: "Power1",
         yoyo: true,
         onComplete: () => {
-          this.scene.start("GameScene");
+          if (!checkOfflineLimit()) {
+          } else {
+            this.scene.start("GameScene");
+          }
         },
       });
     });
@@ -160,7 +185,7 @@ class StartScene extends Phaser.Scene {
         ease: "Power1",
         yoyo: true,
         onComplete: () => {
-          exitGame();
+          onGameExited();
         },
       });
     });
